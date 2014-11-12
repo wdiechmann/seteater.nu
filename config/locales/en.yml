@@ -1,0 +1,78 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  home: "Home"
+  admin: "Administration"
+  edit: "Edit"
+  back: "Back"
+  devise:
+    navigation:
+      edit_account: "Edit profile"
+      sign_out: "Sign out"
+      sign_in: "Sign in"
+      sign_up: "Sign up"
+      users: "Users"
+      
+    forms:
+      name: "Your name"
+      email: "Your email address"
+      password: "Your password"
+      current_password: "Your current password"
+      password_confirmation: "Repeat your password to confirm it"
+      reset: "Reset!"
+      sign_in: "Sign in!"
+      sign_up: "Sign up!"
+      update: "Update!"
+      cancel: "Cancel your account"
+      cancel_button: "Cancel my account"
+      remember_me: "Remember me"
+      resend_confirmation: "Resend!"
+      
+    confirmations:
+      keep: "-"
+      resend_confirmation: "Resend Instructions"
+    failure:
+      keep: "-"
+    mailer:
+      keep: "-"
+    omniauth_callbacks:
+      keep: "-"
+    passwords:
+      forgot: "Forgot your password?"
+      forgotten: "Have you forgotten your password - please use this link instead!"
+      keep: "-"
+    registrations:
+      keep: "-"
+      remembering: "If you'd like this form to be filled in the next time you're around - tick the box below when signing in!"
+      not_signed_up: "If you're not signed up yet - please use this link instead!"
+      already_signed_up: "If you're signed up already - please use this link to sign in!"
+      edit_password: "Leave these fields blank if you don't want to change your password."
+      edit_password_current: "You must enter your current password to make changes."
+      unhappy: "Unhappy? We'll be sad to see you go."
+    sessions:
+      keep: "-"
+    unlocks:
+      keep: "-"
+  errors:
+    messages:
+      keep: "-"

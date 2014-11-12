@@ -1,0 +1,499 @@
+!!!
+/
+/ if template should build with Open Graph Protocol (opg.me)
+/
+/[if lt IE 7] <html.no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="dk" prefix="og: http://ogp.me/ns#">
+/[if IE 7] <html.no-js lt-ie10 lt-ie9 lt-ie8" lang="dk" prefix="og: http://ogp.me/ns#">
+/[if IE 8] <html.no-js lt-ie10 lt-ie9 " lang="dk" prefix="og: http://ogp.me/ns#">
+/[if IE 9] <html.no-js lt-ie10" lang="dk" prefix="og: http://ogp.me/ns#">
+/[if gt IE 9]><!
+%html.no-js{lang: 'dk'}
+	/ <![endif]>
+	%head
+		- current = 'ingen'
+		= render 'layouts/head'
+		:css
+			.tk-proxima-nova{font-family:"proxima-nova",sans-serif;}
+			.simple_form { margin-top: 20px;}
+			h3 strong { color: green; }
+			form .form-control { height: 50px;}
+			.navbar-collapse ul.nav li a { border: 0px;}
+			.scroll-btn a { background-color: transparent;}
+	
+	%body
+		%nav.navbar.navbar-inverse.navbar-fixed-top{:role => "navigation", style: "background-color: #2a1d32"}
+			.container
+				.navbar-header
+					%button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", :type => "button"}
+						%span.sr-only Vip navigationen
+						%span.icon-bar
+						%span.icon-bar
+						%span.icon-bar
+					/ You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it)
+					%a.navbar-brand{:href => "/"} 
+						seteater.nu
+				/ Collect the nav links, forms, and other content for toggling
+				.collapse.navbar-collapse.navbar-ex1-collapse
+					%ul.nav.navbar-nav.navbar-right
+						%li{class: "#{'active' if current=='jobber'}"}
+							%a.sect{:href => "#", :"data-section" => "jobber" } Jobber
+						- if user_signed_in?
+							%li
+								= link_to "Jobbere", jobbers_url
+							%li
+								= link_to "Job", jobs_url
+						%li{class: "#{'active' if current=='about'}"}
+							%a.sect{:href => "#", :"data-section" => "about", style: "border-left: 0px"} om lejren
+						%li{class: "#{'active' if current=='blog'}"}
+							%a.sect{:href => "#", :"data-section" => "blog", style: "border-left: 0px"} Blog
+						%li{class: "#{'active' if current=='contact'}"}
+							%a.sect{:href => "#", :"data-section" => "contact", style: "border-left: 0px"} Kontakt
+
+		= render 'layouts/messages'
+
+		%section.header-10-sub.v-center{ style: "height: 1090px; background-position: 50% 0px;"}
+			.background{ style: "background-position: 50% 0px; width: 112%"}
+			%div
+				.container
+					.hero-unit
+						%h1 Gir' du en hånd med?
+						%p Skal du hjælpe os med at skabe Spejdernes Lejr 2017?
+			%span.scroll-btn
+				%a{href:"#"}
+					%span.mouse
+						%span
+		
+		/ jobber intro
+		%section#jobber.content-7.v-center.ani-processed{ style: "opacity: 1;"}
+			%div
+				.container
+					%h3 
+						Meld dig som 
+						%strong jobber
+						på Spejdernes Lejr 2017
+					.row.v-center
+						.col-sm-3
+							%h6 Målet
+							%p
+								Som jobber er du med til at skabe en helt enestående oplevelse for mere end 40.000 spejdere fra hele landet - og 
+								en pæn sjat fra resten af verden!
+							%h6 Din opgave
+							%p
+								Her i tiden op til lejren er der masser af udvalg som har brug for hjælp til alt fra oversættelse, planlægning af aktiviteter, bla bla bla
+							/ %p
+							/ 	Der er nogen som skal stå i iskiosk, andre som skal bygge scener til fælles lejrbål, stille toiletvogne op,
+							/ 	fragte, partere, fritere, fremstille, sælge, spule, vaske, koge, ælte, male, råbe, pusle, pensle....
+							%h6 Krav
+							%p
+								Det væsentligste krav er masser af godt humør, viljen til at ville og evnen til at bære
+								over når det hele ikke spiller max!
+						.col-sm-6
+							%img{src: asset_url("jobbere.jpg")}
+							/%form{ role: "form", style: "margin-top: 20px"}
+							= simple_form_for(@jobber, id: "jobber-registration") do |f|
+								= f.error_notification
+
+
+
+								.form-inputs
+									.form-group
+										%label Navn
+										= f.text_field :name, :autofocus => true, class: 'form-control ', placeholder: "Søren Spejdersen"
+										= f.error :name
+
+									.form-group
+										%label Adresse
+										= f.text_field :street, :autofocus => true, class: 'form-control ', placeholder: "Pladsen 2"
+										= f.error :street
+
+									.form-group
+										%label Postnr By
+										= f.text_field :zip_city, :autofocus => true, class: 'form-control ', placeholder: "6000 Sønderborg"
+										= f.error :zip_city
+
+									.form-group
+										%label Mobilnr
+										= f.text_field :phone_number, :autofocus => true, class: 'form-control ', placeholder: "+45 12345678"
+										= f.error :phone_number
+
+									.form-group
+										%label Email adresse
+										= f.text_field :email, :autofocus => true, class: 'form-control ', placeholder: "soren@spejder.liv"
+										= f.error :email
+
+		
+								.form-actions
+									%button.jobber-registration.form-control.btn.btn-success{ type: 'submit' } Ja! Jeg gir' en hånd!
+
+							%p
+								%small - så kan du regne med at vi kontakter dig indenfor de næste 2 uger, for at finde netop det job, du er som skabt til
+
+						.col-sm-3
+							.span3.offset1
+								%h6 Hvad bruger vi oplysningerne til?
+								%p
+									Vi prøver at nøjes med at spørge om de oplysninger, vi skal bruge
+								%h5 Dit navn
+								%p fordi det er rart at kunne kalde folk ved navn, 
+								%h5 Din adresse, postnr og by
+								%p fordi vi efter lejren gerne vil sende dig en tak for din deltagelse,
+								%h5 Dit mobilnr
+								%p fordi vi gerne vil kunne sende dig en SMS ind imellem, når der er noget der brænder slemt på
+								%h5 Din email adresse
+								%p fordi det vil være den måde, vi fortrinsvis vil kommunikere med dig på, før og efter lejren
+
+
+		/ about the camp
+		%section.content-23.v-center.custom-bg#about{ style: "background-position: 50% 0px; width: 112%"}
+			%div
+				.container
+					.hero-unit.hero-unit-bordered
+						%h1 Spejdernes Lejr 2017 - hvad er det?
+			%a.control-btn{ href: "#"}
+				%span.glyphicon.glyphicon-chevron-down
+		
+		/ 
+		%section.content-23.v-center#about_2{ style: "background-position: 50% 0px; width: 112%"}
+			%div
+				.container
+					.row
+						.col-sm-4{style: "height:200px"}
+					.row
+						.col-sm-12
+							%h1 En lejr for alle danske spejdere
+					.row
+						.col-sm-4
+							%p
+								De første spadestik er taget, lejren har fundet sin plads (i Sønderborg på Als). 
+								Vi har nedsat hovedudvalget og vi er begyndt at tegne den store lejr.
+						.col-sm-4
+							%p
+								En lejr for alle danske spejderkorps - Det Danske Spejderkorps, KFUM-spejderne i Danmark, De grønne pigespejdere, De Danske Baptisters Spejderkorps, Dansk Spejderkorps Sydslesvig, Kalaallit Nunaanni Spejderit Kattufiat - Grønlands Spejderkorps, Føroya Skótaráð og FDF Frivilligt Drenge- og Pige-Forbund.
+						.col-sm-4
+				%p
+				%img{ src: asset_url("banner.jpg")}
+				%p
+				.container
+					.row
+						.col-sm-4
+							%p
+						.col-sm-4
+							%p
+								Lejren varer i 9 dage, fra den 22. til den 30. juli 2017.
+						.col-sm-4
+							%p
+								I 14 dage før lejren, og 8 dage efter lejren, har du mulighed for at deltage på pionérlejr. Her kan du blive udfordret på alle de færdigheder, du måske 
+								drømmer om at arbejde med i din hverdag - som VVS'er, elektriker, IT specialist, rendegraver, lastbilchauffør, eller noget helt andet.
+					.row
+						.col-sm-4{style: "height:400px"}
+
+		
+		/ contact
+		%section#contact.content-7.v-center.ani-processed{ style: "opacity: 1;"}
+			%div
+				.container
+					%h3 
+						Har du en 
+						%strong vigtig
+						besked til os?
+					.row.v-center
+						.col-sm-3
+							%h5 Hvad glemte vi på Spejdernes Lejr 2012?
+							%p
+								Måske går du med en rigtig dårlig fornemmelse i maven fra sidste lejr - for 
+								vi skal være hudløst ærlige og indrømme at det ikke var alt som blev, som vi havde drømt om!
+								Det allermeste blev godt - meget blev rigtig godt; og så var der måske lige det, som du bed mærke i, som kunne have været
+								åhh, så meget bedre!
+							%h5 Ud med det!
+							%p
+								Vi er meget opsatte på at gøre det endnu bedre på  - og derfor er det vigtigt at du fortæller os
+								om din oplevelse på SL2012.
+						.col-sm-6
+							%form{ role: "form" }
+								.form-group
+									%label Navn
+									%input.form-control{ type: "text", placeholder: "Søren Spejdersen" }
+								.form-group
+									%label Adresse
+									%input.form-control{ type: "text", placeholder: "Pladsen 2" }
+								.form-group
+									%label Postnr By
+									%input.form-control{ type: "text", placeholder: "6000 Sønderborg" }
+								.form-group
+									%label Email adresse
+									%input.form-control{ type: "text", placeholder: "soren@spejder.liv" }
+								.form-group
+									%label Kommentar
+									%textarea.form-control{ type: "text", placeholder: "Skriv din kommentar...", style: "height: 150px" }
+								.form-group
+									%button.form-control.btn.btn-warning{ type: 'submit' } Hør hvad jeg siger!
+
+							%p
+								%small - og vi siger tak med en tegning af lejrens maskot - Halgrimm den Grusomme
+
+							/ .span4.offset1
+							/ 	.screen-wrapper-custom
+							/ 		.screen-custom
+							/ 			%img.ani-processed{ src: "", style: "top: -2010px"}
+						.col-sm-3
+							.span3.offset1
+								%h6 Hvad bruger vi din kommentar til?
+								%p
+									For det første er det vigtigt at du skriver navn og emailadresse på - så vi kan komme i kontakt med dig
+									hvis der er noget i din kommentar, som vi gerne vil have uddybet.
+								%p 
+									For det andet bliver de bedste observationer og iagttagelser - måske er din oplevelse netop det, der gør at den næste lejr bliver så meget bedre -
+									puttet i en spejdergryde, og så bliver der trukket lod om en gratis lejr!
+
+								%p
+									For det tredje får du et ark med lejrens maskot Halgrimm hin Halvsløje, tegnet og signeret af tegneren Peter Madsen - og den skal vi
+									kende din adresse for at kunne sende til dig
+
+		/ footer-3
+		%footer.footer-3
+			.container
+				.row.v-center
+					.col-sm-8
+						%a.brand{ href: "#"} Spejdernes Lejr 2017
+				.row
+					.col-sm-8.user_sign_in{ style: "height: 40px;"}
+					.col-sm-4{style: "bottom: 0px"}
+						%p.small
+							made by 
+							%a{ href: "http://twitter.com/wdiechmann", target: "_blank"} wdiechmann
+							%br
+							powered by 
+							%a{ href: "http://alco.dk", target: "_blank"} ALCO Company
+
+		= javascript_include_tag 'application'
+
+		:coffeescript
+			userSignIn = () ->
+				$('.user_sign_in').on 'click', (event) ->
+					window.location.href = '/users/sign_in'
+					
+			jobberRegistration = () ->
+				request = null
+				$('button.jobber-registration').on 'click', (event) =>
+					# abort any pending request
+					event.preventDefault()
+					if request
+						request.abort()
+						
+					# setup some local variables
+					$form = $('#new_jobber')
+					# let's select and cache all the fields
+					$inputs = $form.find "input, select, button, textarea"
+					
+					# serialize the data in the form
+					serializedData = $form.serialize()
+					
+					# let's disable the inputs for the duration of the ajax request
+					# Note: we disable elements AFTER the form data has been serialized.
+					# Disabled form elements will not be serialized.
+					$inputs.prop("disabled", true)
+					
+					# fire off the request to /form.php
+					request = $.ajax
+						url: '/jobbers.js',
+						type: "post",
+						data: serializedData
+							
+					# callback handler that will be called on success
+					request.done (response, textStatus, jqXHR) ->
+						# log a message to the console
+						swal "Tak!", "Vi har modtaget din tilmelding - og sendt dig en email :)", 'success'
+					
+					# callback handler that will be called on failure
+					request.fail (jqXHR, textStatus, errorThrown) ->
+						# log the error to the console
+						swal "ØV!", "Noget er gået galt \n Fejlen: " + textStatus + ' ' + errorThrown, 'error'
+						
+					# callback handler that will be called regardless
+					# if the request failed or succeeded
+					request.always () ->
+						#reenable the inputs
+						$inputs.prop "disabled", false
+					
+					# prevent default posting of form
+					event.preventDefault()
+
+			$(document).on 'ready page:load', -> 
+				pageOnLoad()
+				jobberRegistration()
+				userSignIn()
+				msg = $('#flash_notice').html()
+				if msg
+					swal 'Super!', msg, 'success'
+				
+		:javascript
+		
+			function fadedEls(el, shift) {
+			    el.css('opacity', 0);
+			    switch (shift) {
+			        case undefined: shift = 0;
+			        break;
+			        case 'h': shift = el.eq(0).outerHeight();
+			        break;
+			        case 'h/2': shift = el.eq(0).outerHeight() / 2;
+			        break;
+			    }
+			    $(window).resize(function() {
+			        if (!el.hasClass('ani-processed')) {
+			            el.eq(0).data('scrollPos', el.eq(0).offset().top - $(window).height() + shift);
+			        }
+			    }).scroll(function() {
+			        if (!el.hasClass('ani-processed')) {
+			            if ($(window).scrollTop() >= el.eq(0).data('scrollPos')) {
+			                el.addClass('ani-processed');
+			                el.each(function(idx) {
+			                    $(this).delay(idx * 200).animate({
+			                        opacity : 1
+			                    }, 1000);
+			                });
+			            }
+			        }
+			    });
+			};
+			
+			function collapseMenu(e){
+				$(e).closest('.collapse').removeClass('in');
+			}
+			
+			function scrollToSection(e){
+				$.scrollTo($('#' + $(e).data('section')), {
+					axis : 'y',
+					duration : 500
+				})
+			}
+			
+			function pageOnLoad(){
+					var isMobile = {
+					    Android: function() {
+					        return navigator.userAgent.match(/Android/i);
+					    },
+					    BlackBerry: function() {
+					        return navigator.userAgent.match(/BlackBerry/i);
+					    },
+					    iOS: function() {
+					        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+					    },
+					    Opera: function() {
+					        return navigator.userAgent.match(/Opera Mini/i);
+					    },
+					    Windows: function() {
+					        return navigator.userAgent.match(/IEMobile/i);
+					    },
+					    any: function() {
+					        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+					    }
+					};
+					$('.header-10-sub .scroll-btn a,a.control-btn').on('click', function(e) {
+						e.preventDefault();
+						$.scrollTo($(this).closest('section').next(), {
+						    axis : 'y',
+						    duration : 500
+						});
+						return false;
+					});
+					$('.nav').find('a.sect').on('click', function(e) {
+					    e.preventDefault();
+							elem=this
+							$.when(scrollToSection(elem)).done(collapseMenu(elem));
+					});
+					
+					// Sections height & scrolling
+					$(window).resize(function() {
+					    var sH = $(window).height();
+					    $('section.header-10-sub').css('height', (sH + 'px'));
+					});
+					
+					// Parallax
+					if(!isMobile.any()) {
+					    $('.header-10-sub,.header-10-sub .background').each(function() {
+					        $(this).parallax('50%', -0.3, false);
+					    });
+					
+					    $('.content-23:not(.custom-bg)').each(function() {
+					        $(this).parallax('50%', 0.3, false);
+					    });
+					
+					    $('.content-23.custom-bg2').css({
+					        backgroundAttachment: 'fixed'
+					    });
+					};
+					
+					if(!isMobile.any()) {
+					    // Faded elements
+					    // fadedEls($('.content-7'), 300);
+					    // fadedEls($('.content-8'), 300);
+					};
+					
+					(function(el) {
+					    el.css('left', '-100%');
+					    $(window).resize(function() {
+					        if (!el.hasClass('ani-processed') && el.length > 0) {
+					            el.data('scrollPos', el.offset().top - $(window).height() + el.outerHeight());
+					        }
+					    }).scroll(function() {
+					        if (!el.hasClass('ani-processed')) {
+					            if ($(window).scrollTop() >= el.data('scrollPos')) {
+					                el.addClass('ani-processed');
+					                el.animate({
+					                    left : 0
+					                }, 500);
+					            }
+					        }
+					    });
+					})($('.content-13 > .container'));
+					
+					$(window).resize().scroll();
+					
+					// Carousel
+					(function(el){
+						$(window).resize(function() {
+							shift = el.eq(0).outerHeight() /10;
+						if (!el.hasClass('ani-processed') && el.length > 0) {
+							el.eq(0).data('scrollPos', el.eq(0).offset().top - $(window).height() + shift);
+						}
+						}).scroll(function() {
+							if (!el.hasClass('ani-processed')) {
+								if ($(window).scrollTop() >= el.eq(0).data('scrollPos')) {
+									el.addClass('ani-processed');
+									function carouselAnimation(){
+										el.css('top', '0');
+										var imgHeight = el.height();
+										var lastPoint = imgHeight - 448*2;
+										var intervalID = setInterval(function(){
+											el.animate({
+												top: (el.css('top').slice(0, -2)) - 402
+											}, {
+												duration: 1000,
+												easing: "easeInOutSine"
+											});
+											console.log((-(el.css('top').slice(0, -2))), lastPoint);
+											if (-(el.css('top').slice(0, -2)) >= lastPoint){
+												clearInterval(intervalID);
+												setTimeout(function(){
+													el.animate({
+												  	top: 0
+												  }, {
+														duration: 1000,
+														easing: "easeInOutSine",
+														complete: carouselAnimation
+													});
+												}, 3000)
+											}
+										}, 2000);
+									}
+									carouselAnimation();
+								}
+							}
+						});
+					})($('.screen-custom img'));
+			}
+			
+			(function($) {
+				$(function() {
+				});
+			})(jQuery);

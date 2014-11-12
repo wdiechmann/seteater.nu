@@ -1,0 +1,29 @@
+{
+  "name": "seteater",
+  "version": "0.0.1",
+  "authors": [
+    "Walther H Diechmann <walther@diechmann.net>"
+  ],
+  "description": "An app to manage attendance clocking",
+  "keywords": [
+    "attendance",
+    "clocking",
+    "blue-collar"
+  ],
+  "license": "MIT",
+  "homepage": "seteater.nu",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2.1.1",
+    "jquery-ujs": "1.0.1",
+    "sweetalert": "0.2.0",
+    "bootstrap-material-design": "~0.1.1"
+  }
+}

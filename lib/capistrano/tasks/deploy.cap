@@ -1,0 +1,64 @@
+namespace :nginx do
+  desc "Restart NGINX service"
+  task :restart do
+    ask(:sudopw, "sudo password")
+    on roles(:app) do
+      execute "echo -e \"#{fetch(:sudopw)}\\n\" | sudo -S service nginx restart"
+    end
+  end
+end
+
+namespace :deploy do
+
+  desc "Makes sure local git is in sync with remote."
+  task :check_revision do
+    unless `git rev-parse HEAD` == `git rev-parse seteater.nu/master`
+      puts "WARNING: HEAD is not the same as origin/master"
+      puts "Run `git push` to sync changes."
+      exit
+    end
+  end
+  
+  desc "Makes sure databases are setup"
+  task :check_database do
+    on roles(:db) do |host|
+      within fetch(:release_path) do
+        with rails_env: fetch(:rails_env) do
+          begin
+            execute :rake, 'db:version' # This creates the database tables AND seeds
+          rescue
+            execute :rake, 'db:create' # This creates the database tables AND seeds
+          end
+        end
+      end
+    end
+  end
+
+  desc "Symlinks config files for Nginx and Unicorn."
+  task :symlink_config do
+    on roles(:app) do
+      execute "rm -f /etc/nginx/sites-enabled/default"
+
+      execute "ln -nfs #{current_path}/config/seteater.nginx.conf /etc/nginx/sites-enabled/#{fetch(:application)}"
+      execute "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{fetch(:application)}"
+   end
+  end
+
+  %w[start stop restart].each do |command|
+    desc "#{command} Unicorn server."
+    task command do
+      on roles(:app) do
+        execute "/etc/init.d/unicorn_#{fetch(:application)} #{command}"
+      end
+    end
+  end
+
+  before :deploy, "deploy:check_revision"
+  before :migrate, "deploy:check_database"
+  after :publishing, "deploy:symlink_config"
+  # before "deploy:stop", "nginx:restart"
+  # after "deploy:stop", "deploy:start"
+  # after :deploy, "deploy:stop"
+  # after :rollback, "deploy:restart"
+
+end

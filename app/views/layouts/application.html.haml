@@ -1,0 +1,17 @@
+!!!
+%html
+	%head
+		%meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+		%title= content_for?(:title) ? yield(:title) : 'seteater.nu'
+		%meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'seteater.nu'}"}
+		= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+		= javascript_include_tag 'application', 'data-turbolinks-track' => true
+		= csrf_meta_tags
+		:css
+			.form-control-wrapper .floating-label { opacity: 1.0 !important;}
+	%body
+		%header{ style: "padding-top: 0px;"}
+			= render 'layouts/navigation'
+		%main{:role => "main"}
+			= render 'layouts/messages'
+			= yield

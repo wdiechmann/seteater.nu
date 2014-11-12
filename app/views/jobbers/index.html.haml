@@ -1,0 +1,30 @@
+.container-fluid
+	.row
+		.col-md-12
+			%h1 Oversigt over jobbere
+
+	.row
+		.col-md-12
+			%table.table.table-striped
+				%tr
+					%th Name
+					/ %th Street
+					/ %th Zip city
+					%th Phone number
+					%th Email
+					%th Confirmed at
+					%th
+					
+				- @jobbers.each do |jobber|
+					%tr
+						%td= link_to jobber.name, jobber
+						/ %td= jobber.street
+						/ %td= jobber.zip_city
+						%td= jobber.phone_number
+						%td= jobber.email
+						%td= jobber.confirmed_at
+						%td= link_to 'Destroy', jobber, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+			%br
+
+			= link_to 'Ny jobber', new_jobber_path, class: 'btn btn-success'
