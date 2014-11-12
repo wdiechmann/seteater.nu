@@ -11,35 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106165031) do
-
-  create_table "accounts", force: true do |t|
-    t.string   "name"
-    t.boolean  "active",     default: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "jobbers", force: true do |t|
-    t.string   "name"
-    t.string   "street"
-    t.string   "zip_city"
-    t.string   "phone_number"
-    t.string   "email"
-    t.string   "confirmed_token"
-    t.datetime "confirmed_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "jobs", force: true do |t|
-    t.string   "name"
-    t.string   "location"
-    t.string   "schedule"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20141003093054) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -68,10 +40,8 @@ ActiveRecord::Schema.define(version: 20141106165031) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
-    t.integer  "account_id"
   end
 
-  add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
   add_index "users", ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
