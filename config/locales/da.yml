@@ -101,3 +101,6 @@ da:
   errors:
     messages:
       keep: "-"
+
+  plays:
+    plays:  "Forestillinger"
