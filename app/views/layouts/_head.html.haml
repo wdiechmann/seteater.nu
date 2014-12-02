@@ -1,11 +1,12 @@
-%meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-
+%meta{ "http-equiv" => "content-language", content: "da"}
+%meta{ "http-equiv" => "X-UA-Compatible", content: "IE=Edge,chrome=1"}
+%meta{ "http-equiv" => "Content-Type", content: "text/html; charset=UTF-8"}
 %meta{ charset: "utf-8" }
 %meta{ name: "viewport", content:"width=device-width, initial-scale=1.0"}
+%meta{ name: "description", content: "#{content_for?(:description) ? yield(:description) : 'seteater.nu'}"}
 
 %title= content_for?(:title) ? yield(:title) : 'seteater.nu'
 
-%meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'seteater.nu'}"}
 /
 / --- Open Graph Protocol
 / %meta{:content => "title", :property => "og:title"}/
@@ -29,51 +30,49 @@
 
 / Add custom CSS here
 :css
+	/*
+		body, main {
+			// background: transparent;
+		}
 
-	
-	body, main { 
-		// background: transparent; 
-	}
-	
-	html {
-		// background: -webkit-linear-gradient(220deg, #134E5E 10%, #71B280 90%); /* Chrome 10+, Saf5.1+ */
-		// background:    -moz-linear-gradient(220deg, #134E5E 10%, #71B280 90%); /* FF3.6+ */
-		// background:     -ms-linear-gradient(220deg, #134E5E 10%, #71B280 90%); /* IE10 */
-		// background:      -o-linear-gradient(220deg, #134E5E 10%, #71B280 90%); /* Opera 11.10+ */
-		// background:         linear-gradient(220deg, #134E5E 10%, #71B280 90%); /* W3C */
-        
-	}
-	
-	html, body, main { height: 100%; }
+		html {
+			// background: -webkit-linear-gradient(220deg, #134E5E 10%, #71B280 90%); /* Chrome 10+, Saf5.1+ 
+			// background:    -moz-linear-gradient(220deg, #134E5E 10%, #71B280 90%); /* FF3.6+ 
+			// background:     -ms-linear-gradient(220deg, #134E5E 10%, #71B280 90%); /* IE10 
+			// background:      -o-linear-gradient(220deg, #134E5E 10%, #71B280 90%); /* Opera 11.10+ 
+			// background:         linear-gradient(220deg, #134E5E 10%, #71B280 90%); /* W3C 
+
+		}
+
+		html, body, main { height: 100%; }
+
+		h5 { font-weight: 700 }
+		pre {
+			white-space: pre-wrap; /* css-3 
+			white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 
+			white-space: -pre-wrap; /* Opera 4-6 
+			white-space: -o-pre-wrap; /* Opera 7 
+			word-wrap: break-word; /* Internet Explorer 5.5+ 
+
+			/ background: #eee;
+			/ background-image: -webkit-linear-gradient(#eee 50%,#e0e0e0 50%);
+			/ background-image: -moz-linear-gradient(#eee 50%,#e0e0e0 50%);
+			/ background-image: -ms-linear-gradient(#eee 50%,#e0e0e0 50%);
+			/ background-image: -o-linear-gradient(#eee 50%,#e0e0e0 50%);
+			/ background-image: linear-gradient(#eee 50%,#e0e0e0 50%);
+			/ background-position: 0 0;
+			/ background-repeat: repeat;
+			/ background-size: 4.5em 4.5em;
+			/ color: #555;
+			/ font-family: monospace, serif;
+			/ font-size: 12px;
+			/ line-height: 2.27em;
+			/ margin: 2em 2.27em;
+			/ overflow: hidden;
+			/ padding: 0 2.27em;
+			/ width:85%;
+		}
 	*/
-	      
-	h5 { font-weight: 700 }
-	pre {
-		white-space: pre-wrap; /* css-3 */
-		white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
-		white-space: -pre-wrap; /* Opera 4-6 */
-		white-space: -o-pre-wrap; /* Opera 7 */
-		word-wrap: break-word; /* Internet Explorer 5.5+ */
-  	
-		/ background: #eee;
-		/ background-image: -webkit-linear-gradient(#eee 50%,#e0e0e0 50%);
-		/ background-image: -moz-linear-gradient(#eee 50%,#e0e0e0 50%);
-		/ background-image: -ms-linear-gradient(#eee 50%,#e0e0e0 50%);
-		/ background-image: -o-linear-gradient(#eee 50%,#e0e0e0 50%);
-		/ background-image: linear-gradient(#eee 50%,#e0e0e0 50%);
-		/ background-position: 0 0;
-		/ background-repeat: repeat;
-		/ background-size: 4.5em 4.5em;
-		/ color: #555;
-		/ font-family: monospace, serif;
-		/ font-size: 12px;
-		/ line-height: 2.27em;
-		/ margin: 2em 2.27em;
-		/ overflow: hidden;
-		/ padding: 0 2.27em;
-		/ width:85%;
-	}
-
 
 / Shim to make HTML5 elements usable in older Internet Explorer versions
 /[if lt IE 9]
