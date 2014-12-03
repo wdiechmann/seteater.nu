@@ -194,6 +194,7 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.1)
+    rdiscount (1.6.8)
     rdoc (4.1.2)
       json (~> 1.4)
     roadie (3.0.1)
@@ -318,6 +319,7 @@ DEPENDENCIES
   rails (= 4.1.5)
   rails-i18n (~> 4.0.0)
   rails_layout
+  rdiscount
   roadie-rails
   rspec-rails
   sass-rails (~> 4.0.3)

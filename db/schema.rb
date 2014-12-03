@@ -11,7 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003093054) do
+ActiveRecord::Schema.define(version: 20141202153607) do
+
+  create_table "plays", force: true do |t|
+    t.integer  "theatre_id"
+    t.string   "title"
+    t.string   "theatre_link"
+    t.text     "description"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "publish_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "plays", ["theatre_id"], name: "index_plays_on_theatre_id", using: :btree
+
+  create_table "theatres", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "zip_city"
+    t.string   "country"
+    t.string   "lng_lat"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,0 +1,31 @@
+%p#notice= notice
+
+%p
+  %b Theatre:
+  = @play.theatre.name
+%p
+  %b Title:
+  = @play.title
+%p
+  %b Teatre link:
+  = url_for @play.theatre_link
+%p
+  %b Intro:
+  = RDiscount.new(@play.description.split("_")[0]).to_html.html_safe
+%p
+  %b Detail:
+  = RDiscount.new(@play.description.split("_")[1]).to_html.html_safe
+
+%p
+  %b Start at:
+  = @play.start_at
+%p
+  %b End at:
+  = @play.end_at
+%p
+  %b Publish at:
+  = @play.publish_at
+
+= link_to 'Edit', edit_play_path(@play)
+\|
+= link_to 'Back', plays_path

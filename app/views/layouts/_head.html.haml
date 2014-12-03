@@ -21,6 +21,8 @@
 /[if lte IE 8] <script src="respond.min.js"></script> <script src="excanvas.js"></script>
 
 = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+- if params[:controller]=='visitors'
+	= stylesheet_link_tag 'visitors', media: 'all', 'data-turbolinks-track' => true
 = javascript_include_tag 'application', 'data-turbolinks-track' => true
 = csrf_meta_tags
 

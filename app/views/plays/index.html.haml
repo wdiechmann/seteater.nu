@@ -1,0 +1,31 @@
+%h1 Listing plays
+
+%table
+  %tr
+    %th Theatre
+    %th Title
+    %th Teatre link
+    %th Description
+    %th Start at
+    %th End at
+    %th Publish at
+    %th
+    %th
+    %th
+
+  - @plays.each do |play|
+    %tr
+      %td= play.theatre
+      %td= play.title
+      %td= play.theatre_link
+      %td= play.description
+      %td= play.start_at
+      %td= play.end_at
+      %td= play.publish_at
+      %td= link_to 'Show', play
+      %td= link_to 'Edit', edit_play_path(play)
+      %td= link_to 'Destroy', play, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Play', new_play_path

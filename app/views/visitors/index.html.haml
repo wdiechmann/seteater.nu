@@ -57,7 +57,9 @@
 							.fr-widget.fr-text.fr-wf.fr_bawuwo
 								.fr-text Du er velkommen til at kontakte os, hvis du har ros/ris til denne informationssøjle, gerne vil opslå dit teaters repetoire eller måske af en helt anden grund
 							.fr-widget.fr-grid.fr_bobire
-								%a{ id:"fr_547d82a3bb1e7219fb000068", class:"fr-widget fr-text fr-wf fr_judige  fr-link fr-widget-hover-opacity-60", href:"https://twitter.com/Froontapp"}
+								= link_to( '<div class="fr-text"><u>login</u></div>'.html_safe, new_session_path(User.new), class: "fr-widget fr-text fr-wf fr_judige  fr-link fr-widget-hover-opacity-60")
+
+								%a{ id:"fr_547d82a3bb1e7219fb000068", class:"fr-widget fr-text fr-wf fr_judige  fr-link fr-widget-hover-opacity-60", href:"https://twitter.com/seteater"}
 									.fr-text 
 										%u Twitter
 
@@ -65,10 +67,6 @@
 									.fr-text
 										%u Dribbble
 									
-								%a{ id:"fr_547d82a3bb1e7219fb00005a", class:"fr-widget fr-text fr-wf fr_mogoma  fr-link fr-widget-hover-opacity-60", href:"http://www.froont.com"}
-									.fr-text
-										%u Behance
-									
-								%a{ id:"fr_547d82a3bb1e7219fb000053", class:"fr-widget fr-text fr-wf fr_vofofu  fr-link fr-widget-hover-opacity-60", href:"http://www.froont.com"}
+								%a{ id:"fr_547d82a3bb1e7219fb000053", class:"fr-widget fr-text fr-wf fr_vofofu  fr-link fr-widget-hover-opacity-60", href:"http://linkedin.com"}
 									.fr-text
 										%u LinkedIn

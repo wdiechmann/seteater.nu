@@ -1,0 +1,27 @@
+%h1 Listing theatres
+
+%table
+  %tr
+    %th Name
+    %th Address
+    %th Zip city
+    %th Country
+    %th Lng lat
+    %th
+    %th
+    %th
+
+  - @theatres.each do |theatre|
+    %tr
+      %td= theatre.name
+      %td= theatre.address
+      %td= theatre.zip_city
+      %td= theatre.country
+      %td= theatre.lng_lat
+      %td= link_to 'Show', theatre
+      %td= link_to 'Edit', edit_theatre_path(theatre)
+      %td= link_to 'Destroy', theatre, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Theatre', new_theatre_path

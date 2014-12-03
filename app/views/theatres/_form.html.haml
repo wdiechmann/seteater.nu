@@ -1,0 +1,13 @@
+= simple_form_for(@theatre) do |f|
+	= f.error_notification
+
+	.form-inputs
+		= f.input :name
+		= f.input :address
+		= f.input :zip_city
+		= f.input :country, as: :string
+		/ calculate with geocoder 
+		/ = f.input :lng_lat
+
+	.form-actions
+		= f.button :submit

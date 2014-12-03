@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :plays
+
+  resources :theatres
+
   resources :jobbers do
     member do
       get 'confirmation'

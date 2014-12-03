@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @theatre.name
+%p
+  %b Address:
+  = @theatre.address
+%p
+  %b Zip city:
+  = @theatre.zip_city
+%p
+  %b Country:
+  = @theatre.country
+%p
+  %b Lng lat:
+  = @theatre.lng_lat
+
+= link_to 'Edit', edit_theatre_path(@theatre)
+\|
+= link_to 'Back', theatres_path

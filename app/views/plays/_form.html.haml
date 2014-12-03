@@ -1,0 +1,14 @@
+= simple_form_for(@play) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :theatre
+    = f.input :title
+    = f.input :theatre_link
+    = f.input :description
+    = f.input :start_at
+    = f.input :end_at
+    = f.input :publish_at
+
+  .form-actions
+    = f.button :submit
